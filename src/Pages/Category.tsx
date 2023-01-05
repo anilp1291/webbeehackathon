@@ -31,7 +31,6 @@ export function CategoryPage({ navigation }: Props) {
                 <FlatList
                     style={{ flex: 1 }}
                     data={list}
-                    numColumns={Size.isTablet?2:1}
                     ref={flatListRef}
                     renderItem={({ item, index }) => <CategoryItem key={item.id} item={item} index={index} />}
                 />
