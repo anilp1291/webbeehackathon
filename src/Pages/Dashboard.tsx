@@ -11,6 +11,7 @@ import { RouteNames } from '../Navigation/RouteNames';
 import { addNewMachine } from '../Redux/MainReducer';
 import { selectCategory, selectMachines } from '../Redux/Store';
 import { Size } from '../Utils/Size';
+import { Strings } from '../Utils/Strings';
 import { MachineItemComponent } from './Components/MachineItemComponent';
 
 type Props = NativeStackScreenProps<DrawerParamList, RouteNames.DASHBOARD>;
@@ -38,7 +39,7 @@ export function Dashboard({ route, navigation }: Props) {
             setMachines([
                 {
                     id: selected.id,
-                    title: !!selected.title ? selected.title : 'Unnamed Category',
+                    title: !!selected.title ? selected.title :Strings.unnamedCategory,
                     data: machineList.filter(item => item.category_id === selected.id),
                 }
             ])
@@ -49,7 +50,7 @@ export function Dashboard({ route, navigation }: Props) {
                 const machines = machineList.filter(item => item.category_id === category.id)
                 machineItems.push({
                     id: category.id,
-                    title: !!category.title ? category.title : 'Unnamed Category',
+                    title: !!category.title ? category.title : Strings.unnamedCategory,
                     data: machines
                 })
             })
@@ -62,14 +63,14 @@ export function Dashboard({ route, navigation }: Props) {
     }
     const ListEmptyComponent = () => {
         return <View style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: '100%' }}>
-            <Text variant='titleSmall'>No Items to display</Text>
+            <Text variant='titleSmall'>{Strings.noItems}</Text>
         </View>
     }
     const ListSectionEmptyComponent = () => {
         return <View style={{ alignItems: 'center', justifyContent: 'center', height: 400, width: '100%' }}>
-            <Text style={{ textAlign: 'center', marginBottom: Size._20 }} variant='titleLarge'>No Category Found, {'\n'}please add some</Text>
+            <Text style={{ textAlign: 'center', marginBottom: Size._20 }} variant='titleLarge'>{Strings.noCategory}</Text>
             <Button mode='contained' onPress={() => navigation.navigate(RouteNames.CATEGORY)}>
-                Add Category
+                {Strings.addCategory}
             </Button>
         </View>
     }
@@ -106,7 +107,7 @@ export function Dashboard({ route, navigation }: Props) {
                                     dispatch(addNewMachine(blankMachine))
 
                                 }} >
-                                    Add New
+                                    {Strings.addNew}
                                 </Button>
                             </View>
                             {section.data.length === 0 ? <ListEmptyComponent /> : null}

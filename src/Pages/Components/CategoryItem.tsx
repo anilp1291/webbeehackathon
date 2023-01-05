@@ -28,7 +28,7 @@ export const CategoryItem = ({ item, index }: CategoryItemProps) => {
         <Card key={item.id} style={Styles.card}>
             <Text style={Styles.text} variant='headlineSmall'>{!!name ? name : 'New Category'}</Text>
             <Input
-                label={Strings.cat_name}
+                label={Strings.catName}
                 placeholder={Strings.enter}
                 value={name}
                 onChange={setName}

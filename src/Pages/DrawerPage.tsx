@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { uniqueId } from 'lodash';
 import * as React from 'react';
 import { FlatList, View } from 'react-native';
 import { List } from 'react-native-paper';
@@ -7,7 +8,8 @@ import { DrawerMenu } from '../Domain/interfaces';
 import { RouteNames } from '../Navigation/RouteNames';
 import { selectCategory } from '../Redux/Store';
 import { Size } from '../Utils/Size';
-import { uniqueId } from 'lodash'
+import { Strings } from '../Utils/Strings';
+
 export function DrawerPage() {
     const navigation = useNavigation()
     const [drawerList, setDrawerList] = React.useState<DrawerMenu[]>([])
@@ -22,14 +24,14 @@ export function DrawerPage() {
         list.forEach(item => {
             itemList.push({
                 id: uniqueId('menu_'),
-                title: !!item.title?item.title:'Unnamed Category',
+                title: !!item.title ? item.title : Strings.unnamedCategory,
                 routeName: RouteNames.DASHBOARD,
                 params: { selected: item }
             })
         })
         itemList.push({
             id: uniqueId('menu_'),
-            title: 'Manage Categories',
+            title: Strings.manageCategories,
             routeName: RouteNames.CATEGORY
         })
         setDrawerList(itemList)
@@ -40,8 +42,8 @@ export function DrawerPage() {
                 style={{ flex: 1 }}
                 data={drawerList}
                 renderItem={({ item, index }) => <List.Item key={item.id} title={item.title} onPress={() => {
-                    navigation.navigate(item.routeName,item.params)
-                 }} />}
+                    navigation.navigate(item.routeName, item.params)
+                }} />}
             />
         </View>
     );

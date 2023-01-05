@@ -3,7 +3,13 @@
 export const Strings={
     remove:'Remove',
     enter:'Enter ',
-    cat_name:'Category Name',
+    catName:'Category Name',
+    addCategory:'Add Category',
     field:'Field',
-    fieldName:'Field Name'
+    fieldName:'Field Name',
+    addNew:'Add New',
+    noItems:'No Items to display',
+    noCategory:'No Category Found, \nplease add some',
+    unnamedCategory: 'Unnamed Category',
+    manageCategories:'Manage Categories'
 }
